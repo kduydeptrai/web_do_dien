@@ -27,7 +27,7 @@
             min-height: 100vh;
         }
 
-        /* HEADER & MENU */
+        /* HEADER & MENU MÁY TÍNH */
         header {
             background-color: #0f2027;
             color: #fff;
@@ -45,6 +45,23 @@
             font-size: 24px;
             font-weight: bold;
             letter-spacing: 1px;
+            color: #f39c12;
+            z-index: 1001; /* Đảm bảo logo luôn nổi lên trên */
+        }
+
+        /* Nút 3 gạch (Mặc định ẩn trên Máy tính) */
+        .menu-toggle {
+            display: none;
+            font-size: 24px;
+            color: #fff;
+            background: none;
+            border: none;
+            cursor: pointer;
+            z-index: 1001; /* Đảm bảo nút bấm luôn nổi lên trên */
+            transition: color 0.3s;
+        }
+
+        .menu-toggle:hover {
             color: #f39c12;
         }
 
@@ -113,7 +130,7 @@
         .hero {
             background: linear-gradient(rgba(15, 32, 39, 0.8), rgba(32, 58, 67, 0.8)), url('https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
             color: white;
-            padding: 300px 20px;
+            padding: 120px 20px;
             text-align: center;
             border-radius: 8px;
         }
@@ -408,7 +425,7 @@
         .text-left { text-align: left; }
         .date { font-size: 12px; color: #7f8c8d; margin-bottom: 5px; display: block;}
 
-        /* PHẦN 2: MÃ CSS FOOTER MỚI (ĐẸP & SANG TRỌNG) */
+        /* CSS FOOTER CAO CẤP */
         footer {
             background: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%);
             color: #fff;
@@ -434,7 +451,6 @@
             letter-spacing: 0.5px;
         }
 
-        /* Thanh gạch chân tiêu đề cột nhỏ nhắn xinh xắn */
         .footer-col h4::after {
             content: '';
             display: block;
@@ -460,14 +476,8 @@
             text-align: center;
         }
 
-        .footer-col ul {
-            list-style: none;
-        }
-
-        .footer-col ul li {
-            margin-bottom: 12px;
-        }
-
+        .footer-col ul { list-style: none; }
+        .footer-col ul li { margin-bottom: 12px; }
         .footer-col ul li a {
             color: #cfd8dc;
             text-decoration: none;
@@ -480,16 +490,10 @@
 
         .footer-col ul li a:hover {
             color: #f39c12;
-            padding-left: 5px; /* Hiệu ứng đẩy nhẹ sang phải khi di chuột */
+            padding-left: 5px;
         }
 
-        /* Biểu tượng mạng xã hội */
-        .social-icons {
-            display: flex;
-            gap: 12px;
-            margin-top: 15px;
-        }
-
+        .social-icons { display: flex; gap: 12px; margin-top: 15px; }
         .social-icons a {
             width: 36px;
             height: 36px;
@@ -509,12 +513,7 @@
             transform: translateY(-3px);
         }
 
-        /* Khung nhập báo giá nhanh ở cột cuối */
-        .newsletter-form {
-            display: flex;
-            margin-top: 15px;
-        }
-
+        .newsletter-form { display: flex; margin-top: 15px; }
         .newsletter-form input {
             padding: 10px;
             border: none;
@@ -534,10 +533,7 @@
             transition: 0.3s;
         }
 
-        .newsletter-form button:hover {
-            background-color: #e67e22;
-        }
-
+        .newsletter-form button:hover { background-color: #e67e22; }
         .footer-bottom {
             text-align: center;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
@@ -552,11 +548,56 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* TƯƠNG THÍCH ĐIỆN THOẠI (RESPONSIVE) */
+        /* GIAO DIỆN DI ĐỘNG (MOBILE RESPONSIVE & POPUP MENU) */
         @media (max-width: 768px) {
-            header { flex-direction: column; gap: 15px; }
-            nav ul { flex-wrap: wrap; justify-content: center; gap: 10px; }
-            nav ul li { margin-left: 0; }
+            /* Hiện nút 3 gạch */
+            .menu-toggle {
+                display: block;
+            }
+
+            /* Biến thanh Menu thành một hộp POPUP ẩn hoàn toàn */
+            nav {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100vh;
+                background-color: rgba(15, 32, 39, 0.95); /* Phủ nền mờ tối sang trọng */
+                z-index: 1000;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                
+                /* Hiệu ứng trượt ẩn/hiển thị mượt */
+                opacity: 0;
+                pointer-events: none;
+                transform: translateY(-20px);
+                transition: all 0.4s ease;
+            }
+
+            /* Class kích hoạt hiển thị Popup bằng JS */
+            nav.popup-open {
+                opacity: 1;
+                pointer-events: auto;
+                transform: translateY(0);
+            }
+
+            /* Sắp xếp các mục Menu dọc theo dạng danh sách popup */
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+                gap: 25px;
+            }
+
+            nav ul li {
+                margin-left: 0;
+            }
+
+            nav ul li a {
+                font-size: 22px; /* Tăng kích thước chữ trên mobile để dễ bấm */
+                font-weight: 600;
+            }
+
             .hero h1 { font-size: 28px; }
             .process-container { flex-direction: column; }
             .footer-grid { grid-template-columns: 1fr; gap: 30px; }
@@ -568,7 +609,13 @@
     <!-- HEADER -->
     <header>
         <div class="logo">HMB Agency</div>
-        <nav>
+        
+        <!-- THÊM MỚI: Nút 3 gạch mobile (Sử dụng iconbars của font-awesome) -->
+        <button class="menu-toggle" id="mobile-menu-btn">
+            <i class="fa-solid fa-bars" id="menu-icon"></i>
+        </button>
+
+        <nav id="navbar">
             <ul>
                 <li><a href="#trang-chu" class="nav-link active">Trang Chủ</a></li>
                 <li><a href="#san-pham" class="nav-link">Sản Phẩm</a></li>
@@ -1053,7 +1100,6 @@
     <!-- FOOTER CAO CẤP DÙNG CHUNG CHO TẤT CẢ CÁC TAB -->
     <footer>
         <div class="footer-grid">
-            <!-- Cột 1: Về đại lý -->
             <div class="footer-col">
                 <h4>HMB Agency</h4>
                 <p style="gap: 0; line-height: 1.5; color: #b0bec5;">Giải pháp kỹ thuật đo lường điện hàng đầu Việt Nam. Đối tác tin cậy của các nhà máy công nghiệp, hệ thống tòa nhà và nhà thầu cơ điện M&E.</p>
@@ -1065,7 +1111,6 @@
                 </div>
             </div>
 
-            <!-- Cột 2: Danh mục liên kết nhanh -->
             <div class="footer-col">
                 <h4>Dịch Vụ Nổi Bật</h4>
                 <ul>
@@ -1076,7 +1121,6 @@
                 </ul>
             </div>
 
-            <!-- Cột 3: Thông tin liên hệ bắt buộc -->
             <div class="footer-col">
                 <h4>Thông Tin Liên Hệ</h4>
                 <p><i class="fa-solid fa-phone"></i> Hotline: 0855 555 140</p>
@@ -1084,9 +1128,8 @@
                 <p><i class="fa-brands fa-instagram"></i> Instagram: hmb_agency</p>
             </div>
 
-            <!-- Cột 4: Khung nhận ưu đãi kỹ thuật -->
             <div class="footer-col">
-                <h4>Yêu Cầu Báo Giá Nanh</h4>
+                <h4>Yêu Cầu Báo Giá Nhanh</h4>
                 <p style="gap: 0; color: #b0bec5; font-size:13px;">Để lại Email của bạn, đội ngũ kỹ sư của HMB Agency sẽ liên hệ gửi catalog và báo giá ưu đãi trong 15 phút.</p>
                 <div class="newsletter-form">
                     <input type="email" placeholder="Nhập Email của bạn...">
@@ -1101,10 +1144,15 @@
     </footer>
 
 
-    <!-- PHẦN 3: JAVASCRIPT XỬ LÝ CHUYỂN TAB & SỰ KIỆN GIỎ HÀNG -->
+    <!-- PHẦN 3: JAVASCRIPT XỬ LÝ CHUYỂN TAB & SỰ KIỆN POPUP MENU -->
     <script>
         const links = document.querySelectorAll('.nav-link');
         const tabs = document.querySelectorAll('.tab-content');
+        
+        // Element xử lý Menu Di động
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const navbar = document.getElementById('navbar');
+        const menuIcon = document.getElementById('menu-icon');
 
         // Hàm chuyển đổi tab active
         function switchTab(targetId) {
@@ -1116,9 +1164,33 @@
             
             document.querySelector(targetId).classList.add('active-tab');
             window.scrollTo({ top: 0, behavior: 'smooth' });
+
+            // Tự động đóng popup menu di động lại sau khi đã chọn xong tab
+            if(navbar.classList.contains('popup-open')) {
+                toggleMobileMenu();
+            }
         }
 
-        // Lắng nghe sự kiện click trên cả menu chính và menu liên kết nhanh ở footer
+        // Đóng/Mở Popup Menu trên Điện thoại
+        function toggleMobileMenu() {
+            navbar.classList.toggle('popup-open');
+            // Đổi icon từ 3 gạch (bars) thành dấu X (xmark) khi mở popup và ngược lại
+            if(navbar.classList.contains('popup-open')) {
+                menuIcon.classList.remove('fa-bars');
+                menuIcon.classList.add('fa-xmark');
+            } else {
+                menuIcon.classList.remove('fa-xmark');
+                menuIcon.classList.add('fa-bars');
+            }
+        }
+
+        // Sự kiện click nút 3 gạch
+        mobileMenuBtn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            toggleMobileMenu();
+        });
+
+        // Lắng nghe sự kiện click trên các link chuyển đổi tab
         links.forEach(link => {
             link.addEventListener('click', function(e) {
                 e.preventDefault();
