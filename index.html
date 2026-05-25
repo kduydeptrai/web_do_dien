@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EMIN Static Catalog - Giao Diện Thuần Tĩnh</title>
+    
+    <style>
+        /* Cấu hình chung */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+        body {
+            background-color: #f4f6f9;
+            color: #333;
+        }
+        .container {
+            width: 85%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Header & Tìm kiếm */
+        header {
+            background-color: #fff;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .logo-search {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: #0d47a1;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .logo span {
+            color: #ff6f00;
+        }
+        .search-box input {
+            width: 320px;
+            padding: 10px 15px;
+            border: 2px solid #0d47a1;
+            border-radius: 4px;
+            outline: none;
+        }
+
+        /* Menu điều hướng chính */
+        nav {
+            background-color: #0d47a1;
+        }
+        .nav-container {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+        }
+        .nav-link {
+            color: white;
+            text-decoration: none;
+            padding: 14px 20px;
+            font-size: 15px;
+            font-weight: bold;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+        .nav-link:hover, .nav-link.active {
+            background-color: #ff6f00;
+        }
+
+        /* Nút xem Giỏ hàng hiển thị cố định sẵn trên Menu */
+        .cart-menu-btn {
+            margin-left: auto; /* Đẩy về góc phải menu */
+            background-color: #e53e3e;
+            color: white;
+        }
+        .cart-menu-btn:hover {
+            background-color: #c53030;
+        }
+
+        /* Các trang nội dung */
+        .page-content {
+            display: none; /* Mặc định ẩn */
+            padding: 40px 0;
+            min-height: 400px;
+        }
+        .page-content.active {
+            display: block; /* Chỉ hiện trang hoạt động */
+        }
+        .page-banner {
+            background: #e2e8f0;
+            padding: 30px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            border-left: 5px solid #0d47a1;
+        }
+
+        /* Lưới hiển thị Sản phẩm */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+            gap: 20px;
+        }
+        .product-card {
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 6px;
+            padding: 15px;
+            text-align: center;
+            transition: 0.3s;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .product-card:hover {
+            box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+            border-color: #ff6f00;
+        }
+        .product-card img {
+            max-width: 100%;
+            height: 150px;
+            object-fit: contain;
+            margin-bottom: 12px;
+        }
+        .product-card h4 {
+            font-size: 14px;
+            color: #2d3748;
+            height: 40px;
+            overflow: hidden;
+            margin-bottom: 10px;
+            line-height: 1.4;
+        }
+        .product-price {
+            color: #e53e3e;
+            font-weight: bold;
+            font-size: 16px;
+            margin-bottom: 12px;
+        }
+        .add-to-cart-btn {
+            display: block;
+            background-color: #0d47a1;
+            color: white;
+            text-decoration: none;
+            padding: 10px 0;
+            width: 100%;
+            border-radius: 4px;
+            font-weight: bold;
+            text-align: center;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .add-to-cart-btn:hover {
+            background-color: #ff6f00;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #1a202c;
+            color: #a0aec0;
+            text-align: center;
+            padding: 30px 0;
+            margin-top: 60px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container logo-search">
+            <div class="logo" onclick="switchTab('trangchu', this)">EMIN <span>Static</span></div>
+            <div class="search-box">
+                <input type="text" placeholder="Tìm sản phẩm đo điện...">
+            </div>
+        </div>
+        <nav>
+            <div class="container nav-container">
+                <a class="nav-link active" onclick="switchTab('trangchu', this)">Trang Chủ</a>
+                <a class="nav-link" onclick="switchTab('sanpham', this)">Sản Phẩm</a>
+                <a class="nav-link" onclick="switchTab('dichvu', this)">Dịch Vụ</a>
+                <a class="nav-link" onclick="switchTab('thuonghieu', this)">Thương Hiệu</a>
+                <a class="nav-link" onclick="switchTab('tintuc', this)">Tin Tức</a>
+                <a class="nav-link" onclick="switchTab('gioithieu', this)">Giới Thiệu</a>
+                <a class="nav-link" onclick="switchTab('lienhe', this)">Liên Hệ</a>
+                
+                <a class="nav-link cart-menu-btn" onclick="alert('Tính năng xem chi tiết giỏ hàng đang được cập nhật!')">
+                    🛒 Xem Giỏ Hàng (0)
+                </a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container">
+        
+        <div id="trangchu" class="page-content active">
+            <div class="page-banner">
+                <h2>Chào mừng tới EMIN Static</h2>
+                <p>Hệ thống phân phối thiết bị đo lường thử nghiệm công nghiệp hàng đầu.</p>
+            </div>
+            <p>Vui lòng chọn mục <strong>Sản Phẩm</strong> trên thanh menu để xem danh sách thiết bị đo điện.</p>
+        </div>
+
+        <div id="sanpham" class="page-content">
+            <h3 style="margin-bottom: 20px; color:#0d47a1;">Danh Mục Thiết Bị Đo Điện</h3>
+            <div class="product-grid">
+                
+                <div class="product-card">
+                    <img src="https://picsum.photos/200/200?random=1" alt="Sản phẩm">
+                    <h4>Đồng hồ vạn năng số Sanwa CD800a Nhật Bản</h4>
+                    <div class="product-price">680.000 đ</div>
+                    <div class="add-to-cart-btn">Thêm Vào Giỏ Hàng</div>
+                </div>
+
+                <div class="product-card">
+                    <img src="https://picsum.photos/200/200?random=2" alt="Sản phẩm">
+                    <h4>Ampe kìm đo dòng Kyoritsu 2200 (1000A AC)</h4>
+                    <div class="product-price">1.350.000 đ</div>
+                    <div class="add-to-cart-btn">Thêm Vào Giỏ Hàng</div>
+                </div>
+
+                <div class="product-card">
+                    <img src="https://picsum.photos/200/200?random=3" alt="Sản phẩm">
+                    <h4>Máy hiện sóng lưu trữ số GW Instek GDS-1052-U</h4>
+                    <div class="product-price">7.200.000 đ</div>
+                    <div class="add-to-cart-btn">Thêm Vào Giỏ Hàng</div>
+                </div>
+
+                <div class="product-card">
+                    <img src="https://picsum.photos/200/200?random=4" alt="Sản phẩm">
+                    <h4>Thiết bị đo điện trở cách điện Hioki IR4056-20</h4>
+                    <div class="product-price">3.890.000 đ</div>
+                    <div class="add-to-cart-btn">Thêm Vào Giỏ Hàng</div>
+                </div>
+
+                <div class="product-card">
+                    <img src="https://picsum.photos/200/200?random=5" alt="Sản phẩm">
+                    <h4>Đồng hồ vạn năng điện tử cao cấp Fluke 17B+</h4>
+                    <div class="product-price">3.450.000 đ</div>
+                    <div class="add-to-cart-btn">Thêm Vào Giỏ Hàng</div>
+                </div>
+
+                <div class="product-card">
+                    <img src="https://picsum.photos/200/200?random=6" alt="Sản phẩm">
+                    <h4>Máy đo điện trở đất Kyoritsu 4105A chính hãng</h4>
+                    <div class="product-price">2.900.000 đ</div>
+                    <div class
