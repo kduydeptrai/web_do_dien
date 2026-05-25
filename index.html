@@ -5,10 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HMB Agency - Thiết Bị Đo Điện</title>
     
-    <!-- Thư viện icon font-awesome để hiển thị các biểu tượng đẹp mắt -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    <!-- PHẦN 1: MÃ CSS (GIAO DIỆN) -->
     <style>
         /* CẤU HÌNH CHUNG */
         * {
@@ -46,7 +44,7 @@
             font-weight: bold;
             letter-spacing: 1px;
             color: #f39c12;
-            z-index: 1001; /* Đảm bảo logo luôn nổi lên trên */
+            z-index: 1001;
         }
 
         /* Nút 3 gạch (Mặc định ẩn trên Máy tính) */
@@ -57,7 +55,7 @@
             background: none;
             border: none;
             cursor: pointer;
-            z-index: 1001; /* Đảm bảo nút bấm luôn nổi lên trên */
+            z-index: 1001;
             transition: color 0.3s;
         }
 
@@ -96,12 +94,12 @@
         }
 
         .tab-content {
-            display: none; /* Ẩn mặc định */
+            display: none;
             animation: fadeIn 0.5s ease;
         }
 
         .tab-content.active-tab {
-            display: block; /* Hiện tab được kích hoạt */
+            display: block;
         }
 
         h2 {
@@ -126,11 +124,11 @@
             margin-bottom: 10px;
         }
 
-        /* BỐ CỤC TRANG CHỦ (HERO) */
+        /* BỐ CỤC TRANG CHỦ (HERO) - ĐÃ CẬP NHẬT PADDING PC LÀ 300PX */
         .hero {
             background: linear-gradient(rgba(15, 32, 39, 0.8), rgba(32, 58, 67, 0.8)), url('https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
             color: white;
-            padding: 300px 20px;
+            padding: 300px 20px; /* Tăng chiều cao vùng phủ cho máy tính cực đẹp */
             text-align: center;
             border-radius: 8px;
         }
@@ -550,39 +548,38 @@
 
         /* GIAO DIỆN DI ĐỘNG (MOBILE RESPONSIVE & POPUP MENU) */
         @media (max-width: 768px) {
-            /* Hiện nút 3 gạch */
             .menu-toggle {
                 display: block;
             }
 
-            /* Biến thanh Menu thành một hộp POPUP ẩn hoàn toàn */
+            /* ĐÃ CẬP NHẬT THEO YÊU CẦU: Trả lại độ cao padding gốc gọn gàng (120px) cho Mobile */
+            .hero {
+                padding: 120px 20px;
+            }
+
             nav {
                 position: fixed;
                 top: 0;
                 left: 0;
                 width: 100%;
                 height: 100vh;
-                background-color: rgba(15, 32, 39, 0.95); /* Phủ nền mờ tối sang trọng */
+                background-color: rgba(15, 32, 39, 0.95);
                 z-index: 1000;
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                
-                /* Hiệu ứng trượt ẩn/hiển thị mượt */
                 opacity: 0;
                 pointer-events: none;
                 transform: translateY(-20px);
                 transition: all 0.4s ease;
             }
 
-            /* Class kích hoạt hiển thị Popup bằng JS */
             nav.popup-open {
                 opacity: 1;
                 pointer-events: auto;
                 transform: translateY(0);
             }
 
-            /* Sắp xếp các mục Menu dọc theo dạng danh sách popup */
             nav ul {
                 flex-direction: column;
                 align-items: center;
@@ -594,7 +591,7 @@
             }
 
             nav ul li a {
-                font-size: 22px; /* Tăng kích thước chữ trên mobile để dễ bấm */
+                font-size: 22px;
                 font-weight: 600;
             }
 
@@ -606,11 +603,9 @@
 </head>
 <body>
 
-    <!-- HEADER -->
     <header>
         <div class="logo">HMB Agency</div>
         
-        <!-- THÊM MỚI: Nút 3 gạch mobile (Sử dụng iconbars của font-awesome) -->
         <button class="menu-toggle" id="mobile-menu-btn">
             <i class="fa-solid fa-bars" id="menu-icon"></i>
         </button>
@@ -628,9 +623,7 @@
         </nav>
     </header>
 
-    <!-- CÁC TAB NỘI DUNG -->
     <main>
-        <!-- Tab 1: Trang Chủ -->
         <section id="trang-chu" class="tab-content active-tab">
             <div class="hero">
                 <h1>Giải Pháp Đo Lường Điện Chuyên Nghiệp</h1>
@@ -638,12 +631,10 @@
             </div>
         </section>
 
-        <!-- Tab 2: Sản Phẩm -->
         <section id="san-pham" class="tab-content">
             <h2>Danh Mục Thiết Bị Đo Điện</h2>
             <div class="grid-container">
                 
-                <!-- Sản phẩm 1 -->
                 <div class="card">
                     <div class="card-img"><i class="fa-solid fa-bolt-lightning"></i></div>
                     <h3>Đồng hồ vạn năng (Multimeter)</h3>
@@ -652,7 +643,6 @@
                     <button class="btn-add-cart"><i class="fa-solid fa-cart-shopping"></i> Thêm vào giỏ hàng</button>
                 </div>
                 
-                <!-- Sản phẩm 2 -->
                 <div class="card">
                     <div class="card-img"><i class="fa-solid fa-circle-nodes"></i></div>
                     <h3>Ampe kìm (Clamp Meter)</h3>
@@ -661,7 +651,6 @@
                     <button class="btn-add-cart"><i class="fa-solid fa-cart-shopping"></i> Thêm vào giỏ hàng</button>
                 </div>
                 
-                <!-- Sản phẩm 3 -->
                 <div class="card">
                     <div class="card-img"><i class="fa-solid fa-gauge-high"></i></div>
                     <h3>Máy đo điện trở cách điện</h3>
@@ -670,7 +659,6 @@
                     <button class="btn-add-cart"><i class="fa-solid fa-cart-shopping"></i> Thêm vào giỏ hàng</button>
                 </div>
 
-                <!-- Sản phẩm 4 -->
                 <div class="card">
                     <div class="card-img"><i class="fa-solid fa-mountain"></i></div>
                     <h3>Máy đo điện trở tiếp địa</h3>
@@ -679,7 +667,6 @@
                     <button class="btn-add-cart"><i class="fa-solid fa-cart-shopping"></i> Thêm vào giỏ hàng</button>
                 </div>
 
-                <!-- Sản phẩm 5 -->
                 <div class="card">
                     <div class="card-img"><i class="fa-solid fa-chart-line"></i></div>
                     <h3>Máy phân tích chất lượng điện năng</h3>
@@ -688,7 +675,6 @@
                     <button class="btn-add-cart"><i class="fa-solid fa-cart-shopping"></i> Thêm vào giỏ hàng</button>
                 </div>
 
-                <!-- Sản phẩm 6 -->
                 <div class="card">
                     <div class="card-img"><i class="fa-solid fa-temperature-high"></i></div>
                     <h3>Camera nhiệt hồng ngoại</h3>
@@ -697,7 +683,6 @@
                     <button class="btn-add-cart"><i class="fa-solid fa-cart-shopping"></i> Thêm vào giỏ hàng</button>
                 </div>
 
-                <!-- Sản phẩm 7 -->
                 <div class="card">
                     <div class="card-img"><i class="fa-solid fa-wave-square"></i></div>
                     <h3>Máy hiện sóng cầm tay (Oscilloscope)</h3>
@@ -706,7 +691,6 @@
                     <button class="btn-add-cart"><i class="fa-solid fa-cart-shopping"></i> Thêm vào giỏ hàng</button>
                 </div>
 
-                <!-- Sản phẩm 8 -->
                 <div class="card">
                     <div class="card-img"><i class="fa-solid fa-arrow-up-right-from-square"></i></div>
                     <h3>Thiết bị đo chỉ thị pha</h3>
@@ -715,7 +699,6 @@
                     <button class="btn-add-cart"><i class="fa-solid fa-cart-shopping"></i> Thêm vào giỏ hàng</button>
                 </div>
 
-                <!-- Sản phẩm 9 -->
                 <div class="card">
                     <div class="card-img"><i class="fa-solid fa-plug"></i></div>
                     <h3>Máy kiểm tra ổ cắm & RCD</h3>
@@ -724,7 +707,6 @@
                     <button class="btn-add-cart"><i class="fa-solid fa-cart-shopping"></i> Thêm vào giỏ hàng</button>
                 </div>
 
-                <!-- Sản phẩm 10 -->
                 <div class="card">
                     <div class="card-img"><i class="fa-solid fa-battery-three-quarters"></i></div>
                     <h3>Thiết bị kiểm tra dung lượng pin/ắc quy</h3>
@@ -733,7 +715,6 @@
                     <button class="btn-add-cart"><i class="fa-solid fa-cart-shopping"></i> Thêm vào giỏ hàng</button>
                 </div>
 
-                <!-- Sản phẩm 11 -->
                 <div class="card">
                     <div class="card-img"><i class="fa-solid fa-compass"></i></div>
                     <h3>Máy dò cáp và đường ống ngầm</h3>
@@ -742,7 +723,6 @@
                     <button class="btn-add-cart"><i class="fa-solid fa-cart-shopping"></i> Thêm vào giỏ hàng</button>
                 </div>
 
-                <!-- Sản phẩm 12 -->
                 <div class="card">
                     <div class="card-img"><i class="fa-solid fa-microchip"></i></div>
                     <h3>Máy đo điện trở thấp (Micro-Ohm)</h3>
@@ -751,7 +731,6 @@
                     <button class="btn-add-cart"><i class="fa-solid fa-cart-shopping"></i> Thêm vào giỏ hàng</button>
                 </div>
 
-                <!-- Sản phẩm 13 -->
                 <div class="card">
                     <div class="card-img"><i class="fa-solid fa-lightbulb"></i></div>
                     <h3>Máy đo cường độ ánh sáng (Lux Meter)</h3>
@@ -760,7 +739,6 @@
                     <button class="btn-add-cart"><i class="fa-solid fa-cart-shopping"></i> Thêm vào giỏ hàng</button>
                 </div>
 
-                <!-- Sản phẩm 14 -->
                 <div class="card">
                     <div class="card-img"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
                     <h3>Bút thử điện thông minh không tiếp xúc</h3>
@@ -769,7 +747,6 @@
                     <button class="btn-add-cart"><i class="fa-solid fa-cart-shopping"></i> Thêm vào giỏ hàng</button>
                 </div>
 
-                <!-- Sản phẩm 15 -->
                 <div class="card">
                     <div class="card-img"><i class="fa-solid fa-solar-panel"></i></div>
                     <h3>Máy đo hiệu suất tấm pin năng lượng mặt trời</h3>
@@ -778,7 +755,6 @@
                     <button class="btn-add-cart"><i class="fa-solid fa-cart-shopping"></i> Thêm vào giỏ hàng</button>
                 </div>
 
-                <!-- Sản phẩm 16 -->
                 <div class="card">
                     <div class="card-img"><i class="fa-solid fa-calculator"></i></div>
                     <h3>Thiết bị hiệu chuẩn đa năng (Calibrator)</h3>
@@ -787,7 +763,6 @@
                     <button class="btn-add-cart"><i class="fa-solid fa-cart-shopping"></i> Thêm vào giỏ hàng</button>
                 </div>
 
-                <!-- Sản phẩm 17 -->
                 <div class="card">
                     <div class="card-img"><i class="fa-solid fa-eye"></i></div>
                     <h3>Máy đo tốc độ vòng quay động cơ</h3>
@@ -796,7 +771,6 @@
                     <button class="btn-add-cart"><i class="fa-solid fa-cart-shopping"></i> Thêm vào giỏ hàng</button>
                 </div>
 
-                <!-- Sản phẩm 18 -->
                 <div class="card">
                     <div class="card-img"><i class="fa-solid fa-radiation"></i></div>
                     <h3>Máy đo cường độ từ trường điện từ (EMF)</h3>
@@ -805,7 +779,6 @@
                     <button class="btn-add-cart"><i class="fa-solid fa-cart-shopping"></i> Thêm vào giỏ hàng</button>
                 </div>
 
-                <!-- Sản phẩm 19 -->
                 <div class="card">
                     <div class="card-img"><i class="fa-solid fa-server"></i></div>
                     <h3>Bộ ghi dữ liệu dòng áp (Data Logger)</h3>
@@ -814,7 +787,6 @@
                     <button class="btn-add-cart"><i class="fa-solid fa-cart-shopping"></i> Thêm vào giỏ hàng</button>
                 </div>
 
-                <!-- Sản phẩm 20 -->
                 <div class="card">
                     <div class="card-img"><i class="fa-solid fa-shield-halved"></i></div>
                     <h3>Hộp thử nghiệm điện áp tăng cao (Hi-pot Tester)</h3>
@@ -826,11 +798,9 @@
             </div>
         </section>
 
-        <!-- Tab 3: Dịch Vụ -->
         <section id="dich-vu" class="tab-content">
             <h2>Trung Tâm Kỹ Thuật & Dịch Vụ</h2>
             
-            <!-- Phần dịch vụ 1: HIỆU CHUẨN -->
             <div class="service-section">
                 <div class="service-header">
                     <i class="fa-solid fa-arrows-to-eye"></i>
@@ -896,7 +866,6 @@
                 </div>
             </div>
 
-            <!-- Phần dịch vụ 2: SỬA CHỮA -->
             <div class="service-section">
                 <div class="service-header">
                     <i class="fa-solid fa-screwdriver-wrench"></i>
@@ -922,7 +891,6 @@
             </div>
         </section>
 
-        <!-- Tab 4: Thương Hiệu -->
         <section id="thuong-hieu" class="tab-content">
             <h2>Thương Hiệu Phân Phối</h2>
             <div class="brand-flex">
@@ -933,12 +901,10 @@
             </div>
         </section>
 
-        <!-- Tab 5: Tin Tức -->
         <section id="tin-tuc" class="tab-content">
             <h2>Tin Tức & Kiến Thức Ngành Đo Lường</h2>
             <div class="grid-container">
                 
-                <!-- Tin 1 -->
                 <div class="card news-card">
                     <span class="news-tag">Hướng dẫn</span>
                     <span class="date">25/05/2026</span>
@@ -947,7 +913,6 @@
                     <a href="#" class="read-more">Đọc thêm <i class="fa-solid fa-arrow-right"></i></a>
                 </div>
 
-                <!-- Tin 2 -->
                 <div class="card news-card">
                     <span class="news-tag">Kỹ thuật</span>
                     <span class="date">22/05/2026</span>
@@ -956,7 +921,6 @@
                     <a href="#" class="read-more">Đọc thêm <i class="fa-solid fa-arrow-right"></i></a>
                 </div>
 
-                <!-- Tin 3 -->
                 <div class="card news-card">
                     <span class="news-tag">Cảnh báo</span>
                     <span class="date">19/05/2026</span>
@@ -965,7 +929,6 @@
                     <a href="#" class="read-more">Đọc thêm <i class="fa-solid fa-arrow-right"></i></a>
                 </div>
 
-                <!-- Tin 4 -->
                 <div class="card news-card">
                     <span class="news-tag">Công nghệ</span>
                     <span class="date">15/05/2026</span>
@@ -974,7 +937,6 @@
                     <a href="#" class="read-more">Đọc thêm <i class="fa-solid fa-arrow-right"></i></a>
                 </div>
 
-                <!-- Tin 5 -->
                 <div class="card news-card">
                     <span class="news-tag">Tiêu chuẩn</span>
                     <span class="date">12/05/2026</span>
@@ -983,7 +945,6 @@
                     <a href="#" class="read-more">Đọc thêm <i class="fa-solid fa-arrow-right"></i></a>
                 </div>
 
-                <!-- Tin 6 -->
                 <div class="card news-card">
                     <span class="news-tag">Tư vấn</span>
                     <span class="date">08/05/2026</span>
@@ -992,7 +953,6 @@
                     <a href="#" class="read-more">Đọc thêm <i class="fa-solid fa-arrow-right"></i></a>
                 </div>
 
-                <!-- Tin 7 -->
                 <div class="card news-card">
                     <span class="news-tag">Bảo dưỡng</span>
                     <span class="date">04/05/2026</span>
@@ -1001,7 +961,6 @@
                     <a href="#" class="read-more">Đọc thêm <i class="fa-solid fa-arrow-right"></i></a>
                 </div>
 
-                <!-- Tin 8 -->
                 <div class="card news-card">
                     <span class="news-tag">Sản phẩm</span>
                     <span class="date">30/04/2026</span>
@@ -1010,7 +969,6 @@
                     <a href="#" class="read-more">Đọc thêm <i class="fa-solid fa-arrow-right"></i></a>
                 </div>
 
-                <!-- Tin 9 -->
                 <div class="card news-card">
                     <span class="news-tag">An toàn</span>
                     <span class="date">25/04/2026</span>
@@ -1019,7 +977,6 @@
                     <a href="#" class="read-more">Đọc thêm <i class="fa-solid fa-arrow-right"></i></a>
                 </div>
 
-                <!-- Tin 10 -->
                 <div class="card news-card">
                     <span class="news-tag">Kỹ thuật</span>
                     <span class="date">20/04/2026</span>
@@ -1028,7 +985,6 @@
                     <a href="#" class="read-more">Đọc thêm <i class="fa-solid fa-arrow-right"></i></a>
                 </div>
 
-                <!-- Tin 11 -->
                 <div class="card news-card">
                     <span class="news-tag">Khắc phục lỗi</span>
                     <span class="date">15/04/2026</span>
@@ -1037,7 +993,6 @@
                     <a href="#" class="read-more">Đọc thêm <i class="fa-solid fa-arrow-right"></i></a>
                 </div>
 
-                <!-- Tin 12 -->
                 <div class="card news-card">
                     <span class="news-tag">Thị trường</span>
                     <span class="date">10/04/2026</span>
@@ -1046,7 +1001,6 @@
                     <a href="#" class="read-more">Đọc thêm <i class="fa-solid fa-arrow-right"></i></a>
                 </div>
 
-                <!-- Tin 13 -->
                 <div class="card news-card">
                     <span class="news-tag">Góc chuyên gia</span>
                     <span class="date">05/04/2026</span>
@@ -1055,7 +1009,6 @@
                     <a href="#" class="read-more">Đọc thêm <i class="fa-solid fa-arrow-right"></i></a>
                 </div>
 
-                <!-- Tin 14 -->
                 <div class="card news-card">
                     <span class="news-tag">Sự kiện</span>
                     <span class="date">01/04/2026</span>
@@ -1064,7 +1017,6 @@
                     <a href="#" class="read-more">Đọc thêm <i class="fa-solid fa-arrow-right"></i></a>
                 </div>
 
-                <!-- Tin 15 -->
                 <div class="card news-card">
                     <span class="news-tag">Hướng dẫn</span>
                     <span class="date">28/03/2026</span>
@@ -1076,7 +1028,6 @@
             </div>
         </section>
 
-        <!-- Tab 6: Giới Thiệu -->
         <section id="gioi-thieu" class="tab-content">
             <h2>Giới Thiệu Về HMB Agency</h2>
             <div class="about-container">
@@ -1085,7 +1036,6 @@
             </div>
         </section>
 
-        <!-- Tab 7: Liên Hệ -->
         <section id="lien-he" class="tab-content">
             <h2>Thông Tin Liên Hệ</h2>
             <div class="contact-box">
@@ -1097,7 +1047,6 @@
         </section>
     </main>
 
-    <!-- FOOTER CAO CẤP DÙNG CHUNG CHO TẤT CẢ CÁC TAB -->
     <footer>
         <div class="footer-grid">
             <div class="footer-col">
@@ -1117,7 +1066,7 @@
                     <li><a href="#dich-vu" class="nav-link"><i class="fa-solid fa-chevron-right" style="font-size:10px;"></i> Hiệu Chuẩn Thiết Bị</a></li>
                     <li><a href="#dich-vu" class="nav-link"><i class="fa-solid fa-chevron-right" style="font-size:10px;"></i> Sửa Chữa Thiết Bị Đo</a></li>
                     <li><a href="#san-pham" class="nav-link"><i class="fa-solid fa-chevron-right" style="font-size:10px;"></i> Cung Cấp Linh Kiện</a></li>
-                    <li><a href="#thuong-hieu" class="nav-link"><i class="fa-solid fa-chevron-right" style="font-size:10px;"></i> Hãng Sản Xuất Đối Tác</a></li>
+                    <li><a href="#thuong-hieu" class="nav-link"><i class="fa-solid fa-chevron-right" style="font-size:10px;"></i> HMB Phân Phối</a></li>
                 </ul>
             </div>
 
@@ -1144,12 +1093,10 @@
     </footer>
 
 
-    <!-- PHẦN 3: JAVASCRIPT XỬ LÝ CHUYỂN TAB & SỰ KIỆN POPUP MENU -->
     <script>
         const links = document.querySelectorAll('.nav-link');
         const tabs = document.querySelectorAll('.tab-content');
         
-        // Element xử lý Menu Di động
         const mobileMenuBtn = document.getElementById('mobile-menu-btn');
         const navbar = document.getElementById('navbar');
         const menuIcon = document.getElementById('menu-icon');
@@ -1165,7 +1112,6 @@
             document.querySelector(targetId).classList.add('active-tab');
             window.scrollTo({ top: 0, behavior: 'smooth' });
 
-            // Tự động đóng popup menu di động lại sau khi đã chọn xong tab
             if(navbar.classList.contains('popup-open')) {
                 toggleMobileMenu();
             }
@@ -1174,7 +1120,6 @@
         // Đóng/Mở Popup Menu trên Điện thoại
         function toggleMobileMenu() {
             navbar.classList.toggle('popup-open');
-            // Đổi icon từ 3 gạch (bars) thành dấu X (xmark) khi mở popup và ngược lại
             if(navbar.classList.contains('popup-open')) {
                 menuIcon.classList.remove('fa-bars');
                 menuIcon.classList.add('fa-xmark');
@@ -1184,13 +1129,11 @@
             }
         }
 
-        // Sự kiện click nút 3 gạch
         mobileMenuBtn.addEventListener('click', function(e) {
             e.stopPropagation();
             toggleMobileMenu();
         });
 
-        // Lắng nghe sự kiện click trên các link chuyển đổi tab
         links.forEach(link => {
             link.addEventListener('click', function(e) {
                 e.preventDefault();
